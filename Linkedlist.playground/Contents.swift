@@ -88,6 +88,19 @@ struct LinkedList<Value> {
         tail = previous
         return current.value
     }
+    
+    //Remove at certain position
+    mutating func remove (after node:Node<Value>) -> Value? {
+        
+        defer {
+            //Incase last element
+            if node.next === tail {
+                tail = node
+            }
+            node.next = node.next?.next
+        }
+        return node.next?.value
+    }
 
 
 }
@@ -148,6 +161,10 @@ print(list)
 //list.pop()
 //list.pop()
 
-list.removeLast()
+//list.removeLast()
+
+let index = 1
+let node = list.getNode(at: index - 1)!
+let removedValue = list.remove(after: node)
 
 print(list)
