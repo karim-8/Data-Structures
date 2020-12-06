@@ -64,7 +64,30 @@ struct LinkedList<Value> {
         }
         return head?.value
     }
+    
+    //Remove Last element from List
+   // 1- check list is empty // check if there on item only
 
+    mutating func removeLast () -> Value? {
+        
+        guard let head = head else {
+            return nil
+        }
+        guard head.next != nil else{
+            return pop()
+        }
+        
+        var previous = head
+        var current = head
+        
+        while let next = current.next {
+            previous = current
+            current = next
+        }
+        previous.next = nil
+        tail = previous
+        return current.value
+    }
 
 
 }
@@ -122,8 +145,9 @@ print(list)
 //let node = list.getNode(at: 1)! // get required node
 //list.insert(value: 999, after: node) // append value after
 
-list.pop()
-list.pop()
+//list.pop()
+//list.pop()
 
+list.removeLast()
 
 print(list)
