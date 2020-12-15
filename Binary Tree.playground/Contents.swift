@@ -12,11 +12,17 @@ class BinartTreeNode<Element>{
 }
 
 extension BinartTreeNode {
-    
+    //Left is most piority mode
     func traverseInOrder(visit: (Element) -> Void) {
         leftChild?.traverseInOrder(visit: visit)
         visit(value)
         rightChild?.traverseInOrder(visit: visit)
+    }
+    //Level is the most priorty then parent
+    func traversePostOrder(visit: (Element) -> Void) {
+        leftChild?.traversePostOrder(visit: visit)
+        rightChild?.traversePostOrder(visit: visit)
+        visit(value)
     }
 }
 
@@ -41,6 +47,10 @@ rootRight.leftChild = five
 rootRight.rightChild = four
 
 
-root.traverseInOrder {
+//root.traverseInOrder {
+//    print($0)
+//}
+
+root.traversePostOrder {
     print($0)
 }
