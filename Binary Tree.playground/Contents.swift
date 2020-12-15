@@ -11,6 +11,15 @@ class BinartTreeNode<Element>{
     }
 }
 
+extension BinartTreeNode {
+    
+    func traverseInOrder(visit: (Element) -> Void) {
+        leftChild?.traverseInOrder(visit: visit)
+        visit(value)
+        rightChild?.traverseInOrder(visit: visit)
+    }
+}
+
 
 let root = BinartTreeNode(value: 10)
 let rootLeft = BinartTreeNode(value: 9)
@@ -18,10 +27,20 @@ let rootRight = BinartTreeNode(value: 8)
 
 let seven = BinartTreeNode(value: 7)
 let sex = BinartTreeNode(value: 6)
+
 let five = BinartTreeNode(value: 5)
 let four = BinartTreeNode(value: 4)
-let three = BinartTreeNode(value: 3)
-let two = BinartTreeNode(value: 2)
-let one = BinartTreeNode(value: 1)
+
+root.leftChild = rootLeft
+root.rightChild = rootRight
+
+rootLeft.leftChild = seven
+rootLeft.rightChild = sex
+
+rootRight.leftChild = five
+rootRight.rightChild = four
 
 
+root.traverseInOrder {
+    print($0)
+}
