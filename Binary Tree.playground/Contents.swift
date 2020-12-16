@@ -24,6 +24,12 @@ extension BinartTreeNode {
         rightChild?.traversePostOrder(visit: visit)
         visit(value)
     }
+    
+    func traversePreOrder(visit:(Element) -> Void) {
+        visit(value)
+        leftChild?.traversePreOrder(visit: visit)
+        rightChild?.traversePreOrder(visit: visit)
+    }
 }
 
 
@@ -51,6 +57,10 @@ rootRight.rightChild = four
 //    print($0)
 //}
 
-root.traversePostOrder {
-    print($0)
+//root.traversePostOrder {
+//    print($0)
+//}
+
+root.traversePreOrder {
+    print ($0)
 }
